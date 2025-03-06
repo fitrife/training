@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  backend-login:
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend-login
+    volumes:
+      - ./:/var/www
+    environment:
+      - APP_NAME=Laravel
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=demo_training
+      - DB_USERNAME=remote-dev
+      - DB_PASSWORD=Dev@geek2024_
+    depends_on:
+      - db
+    restart: unless-stopped
+    networks:
+      - backend-login
+
+  db:
+    image: mysql:8.0
+    container_name: backend-login-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: demo_training
+      MYSQL_USER: remote-dev
+      MYSQL_PASSWORD: Dev@geek2024_
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - backend-login
+
+networks:
+  backend-login:
+    driver: bridge
+
+volumes:
+  mysql_data:
+
