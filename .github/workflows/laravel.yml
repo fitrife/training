@@ -47,8 +47,6 @@ jobs:
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
-    - name: Reset SSH Agent
-      run: eval "$(ssh-agent -k)"
     - name: Deploy to Staging via SSH
       uses: appleboy/ssh-action@v1.2.1
       with:
@@ -57,5 +55,5 @@ jobs:
         key: ${{ secrets.KEY }}
         port: 22
         script: |
-          ./deploy-training.sh
+          ./deploy-backend-login.sh
         debug: true
