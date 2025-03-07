@@ -57,3 +57,4 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           ./deploy-training.sh
+        debug: true
