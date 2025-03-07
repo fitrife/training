@@ -53,9 +53,9 @@ jobs:
       uses: appleboy/ssh-action@v1.2.1
       with:
         host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
+        username: lenovo
         key: ${{ secrets.KEY }}
-        port: ${{ secrets.PORT }}
+        port: 22
         script: |
           ./deploy-training.sh
         debug: true
