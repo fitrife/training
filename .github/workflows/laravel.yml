@@ -28,16 +28,18 @@ jobs:
         cd backend-login
         composer install --prefer-dist --optimize-autoloader
 
-    - name: Clear Cache
+    - name: Setup Environment
       run: |
         cd backend-login
+        cp .env.example .env
+        php artisan key:generate
         php artisan config:clear
         php artisan cache:clear
 
     - name: Run Tests
       run: |
         cd backend-login
-        php artisan test
+        vendor/bin/phpunit
 
   deploy-staging:
     runs-on: ubuntu-latest
