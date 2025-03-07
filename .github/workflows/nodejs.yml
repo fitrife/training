@@ -20,12 +20,10 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
-        path: /home/runner/work/training
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: |
-        cd frontend-login
-        npm ci
+    - run: npm ci
+      working-directory: /home/runner/work/training/frontend-login
 
   deploy-staging:
     runs-on: ubuntu-latest
