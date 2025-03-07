@@ -37,5 +37,4 @@ jobs:
         username: lenovo
         port: 22
         script: |
-          export PROJECT_DIR="/home/runner/work/training"
-          ./deploy-training.sh
+          ./deploy-frontend-login.sh
