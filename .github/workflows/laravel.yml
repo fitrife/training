@@ -26,7 +26,13 @@ jobs:
     - name: Install Dependencies
       run: |
         cd backend-login
-        composer install --no-dev --prefer-dist --optimize-autoloader
+        composer install --prefer-dist --optimize-autoloader
+
+    - name: Clear Cache
+      run: |
+        cd backend-login
+        php artisan config:clear
+        php artisan cache:clear
 
     - name: Run Tests
       run: |
